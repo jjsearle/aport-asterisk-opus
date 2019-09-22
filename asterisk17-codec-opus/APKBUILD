@@ -1,0 +1,22 @@
+# Contributor: Joe Searle <joe@jsearle.net>
+# Maintainer: Joe Searle <joe@jsearle.net>
+pkgname=asterisk17-codec-opus
+pkgver=1.3.0
+_asterisk_maj_ver=17
+_asterisk_ver=$_asterisk_maj_ver.0
+pkgrel=0
+pkgdesc="Opus Software Codec for Asterisk"
+url="https://downloads.digium.com/pub/telephony/codec_opus/"
+arch="x86_64"
+license="DIGIUM END-USER LICENSE AGREEMENT"
+depends="libc6-compat libcurl"
+source="$pkgname-$pkgver.tar.gz::https://downloads.digium.com/pub/telephony/codec_opus/asterisk-$_asterisk_ver/${arch//_/-}/codec_opus-${_asterisk_ver}_$pkgver-$arch.tar.gz"
+options="!build !check"
+builddir="$srcdir"/"codec_opus-${_asterisk_ver}_$pkgver-$arch"
+
+package() {
+	install -Dm644 codec_opus.so "$pkgdir/usr/lib/asterisk/modules/codec_opus.so"
+	install -Dm644 format_ogg_opus.so "$pkgdir/usr/lib/asterisk/modules/format_ogg_opus.so"
+	install -Dm644 codec_opus_config-en_US.xml "$pkgdir/var/lib/asterisk/documentation/thirdparty/codec_opus_config-en_US.xml"
+}
+sha512sums="f16bb3ed7d1b37652a0de2af77c7f140b7285b4e90aae965ad79528f85a4e0db4c06bf99b802b50f28c92439fb0d61f817da2903b10f28baf4bd2bd65d96f649  asterisk17-codec-opus-1.3.0.tar.gz"
